@@ -1,0 +1,70 @@
+-- tabela Alabama i Utah dane procentowe
+
+create table alabama_vs_utah
+(
+    characteristics varchar(100) not null,
+    "alabama_in_%"  numeric      not null,
+    "utah_in_%"     numeric      not null
+);
+
+alter table alabama_vs_utah
+    owner to postgres;
+
+insert into alabama_vs_utah
+values ('women in population', 51.263,49.117),
+    ('white in population', 68.264,92.875),
+       ('Black or African', 28.655,0.655),
+       ('high school graduates', 78.935,90.531),
+              ('women-owned firms',21,14);
+
+-- dodatkowe parametry w %
+
+insert into alabama_vs_utah
+values ('homeownership rate', 72.349,75.696),
+       ('below poverty level',25.512,13.026);
+
+-- dane liczbowe
+
+select avg(inc110213)
+from county_facts
+where state_abbreviation = 'AL';
+
+select avg(inc110213)
+from county_facts
+where state_abbreviation = 'UT';
+
+
+select sum(lnd110210)
+from county_facts
+where state_abbreviation = 'AL';
+
+select sum(lnd110210)
+from county_facts
+where state_abbreviation = 'UT';
+
+
+select avg(pop060210)
+from county_facts
+where state_abbreviation = 'AL';
+
+select avg(pop060210)
+from county_facts
+where state_abbreviation = 'UT';
+
+
+-- tabela Alabama i Utah dane liczbowe
+
+create table alabama_vs_utah_in_numbers
+(charactersistics2 varchar(75) not null,
+    alabama_in_numbers numeric not null,
+    utah_in_numbers numeric not null);
+
+insert into alabama_vs_utah_in_numbers
+values
+('population 2014 estimation',4849377,2942902),
+       ('land area',50645.39,82169.62 ),
+       ('average population density (per square mile)',90.207,116.955),
+       ('average income per capita 2013 in $',37778.716,53591.207);
+
+
+
