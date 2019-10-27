@@ -1,0 +1,76 @@
+-- czy płeć róznicuje wyniki?
+
+select avg( sex255214)
+from county_facts
+where state_abbreviation = 'AL';
+
+select avg( sex255214)
+from county_facts
+where state_abbreviation = 'UT';
+
+-- Jaki jest % białych w obu stanach ?
+
+select avg( RHI125214)
+from county_facts
+where state_abbreviation = 'UT';
+
+select avg( RHI125214)
+from county_facts
+where state_abbreviation = 'AL';
+
+-- Jaki jest % Afroamerykanów w obu stanach?
+
+select avg( RHI225214)
+from county_facts
+where state_abbreviation = 'AL';
+
+select avg( RHI225214)
+from county_facts
+where state_abbreviation = 'UT';
+
+-- jaki jest % absolwentów szkół średnich w obu stanach?
+
+select avg( EDU635213)
+from county_facts
+where state_abbreviation = 'UT';
+
+select avg( EDU635213)
+from county_facts
+where state_abbreviation = 'AL';
+
+-- średnia wielkosć gospodarstwa domowego
+
+select avg( HSD310213)
+from county_facts
+where state_abbreviation = 'AL';
+
+select avg( HSD310213)
+from county_facts
+where state_abbreviation = 'UT';
+
+-- kobiety-właściciele firm
+
+select avg( SBO015207)
+from county_facts
+where state_abbreviation = 'UT';
+
+select avg( SBO015207)
+from county_facts
+where state_abbreviation = 'AL';
+
+-- liczba weteranów 
+
+select sum( VET605213)
+from county_facts
+where state_abbreviation = 'AL';
+
+select sum( VET605213)
+from county_facts
+where state_abbreviation = 'UT';
+
+-- populacja Utah
+
+select sum( PST045214)
+from county_facts
+where state_abbreviation = 'UT';
+
