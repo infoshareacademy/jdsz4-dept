@@ -87,9 +87,9 @@ order by p.state DESC
 select p.state, p.candidate, p.party, sum(p.votes)
 from primary_results p
 where p.state like 'Ut%' or p.state like 'Ala%'
-group by 1,2
+group by 1,2;
 
 --suma głosów na poszczególnych kandydatów w stanie Utah:
 select candidate, party, sum(votes) from primary_results where state = 'Utah'
-group by candidate, party
+group by candidate, party;
 
