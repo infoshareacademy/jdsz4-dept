@@ -6,7 +6,8 @@ select c.fips,
        c.age135214 as wiek_poniżej_5,
        c.age295214 as wiek_poniżej_18,
        c.age775214 as wiek_65_i_powyzej
-from county_facts c;
+from county_facts c
+where state_abbreviation not like '%null%';
 -- Liczba populacji w stanie Alabama, z podziałem na county w stosunku do oddanych głosów na Bernie Sanders i Hillary Clinton
 select c.fips, c.area_name, c.state_abbreviation, c.pst045214 as populacja, p.votes as glosy, p.candidate
 from county_facts c
