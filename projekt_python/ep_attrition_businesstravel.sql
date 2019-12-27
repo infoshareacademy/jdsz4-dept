@@ -43,3 +43,23 @@ select distinct wa.attrition,
     sum(wa.employeecount) over (partition by wa.attrition, WA.businesstravel) / sum(wa.employeecount) over (partition by wa.attrition) :: numeric as prc_total_non_tr
 from "WA_Fn-UseC_-HR-Employee-Attrition" wa
 
+--Analiza pracowników, którzy zwolnili się:
+select distinct wa.attrition,
+    "left"(wa.businesstravel,6) as travel_non_tr,
+    sum(wa.employeecount) over () as total,
+    sum(wa.employeecount) over (partition by wa.attrition) as att_y_n,
+    sum(wa.employeecount) over (partition by wa.attrition, ("left"(wa.businesstravel,6))) as travel_non_tr,
+    sum(wa.employeecount) over (partition by wa.attrition) / sum(wa.employeecount) over ()::numeric as prc_total_y_n,
+    sum(wa.employeecount) over (partition by wa.attrition, ("left"(wa.businesstravel,6))) / sum(wa.employeecount) over ()::numeric as prc_total_travel
+from "WA_Fn-UseC_-HR-Employee-Attrition" wa
+where wa.attrition like 'Yes'
+
+select distinct wa.attrition,
+    wa.businesstravel,
+    sum(wa.employeecount) over () as total,
+    sum(wa.employeecount) over (partition by wa.attrition) as att_y_n,
+    sum(wa.employeecount) over (partition by wa.attrition, WA.businesstravel) as travel_non_tr,
+    sum(wa.employeecount) over (partition by wa.attrition) / sum(wa.employeecount) over () :: numeric as prc_total_y_n,
+    sum(wa.employeecount) over (partition by wa.attrition, WA.businesstravel) / sum(wa.employeecount) over (partition by wa.attrition) :: numeric as prc_total_non_tr
+from "WA_Fn-UseC_-HR-Employee-Attrition" wa
+where wa.attrition like 'Yes'
