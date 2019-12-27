@@ -62,8 +62,10 @@ select
     count(wa.employeenumber) as total,
     sum(case when wa.age between '26' and '30' then wa.employeecount else 0 end) as age_26_30,
     sum(case when wa.age between '31' and '35' then wa.employeecount else 0 end) as age_31_35,
+    sum(case when wa.age between '26' and '35' then wa.employeecount else 0 end) as age_26_35,
     sum(case when wa.age between '26' and '30' then wa.employeecount else 0 end) / count(wa.employeenumber) ::numeric as prc_26_30,
-    sum(case when wa.age between '31' and '35' then wa.employeecount else 0 end) / count(wa.employeenumber) ::numeric as prc_31_35
+    sum(case when wa.age between '31' and '35' then wa.employeecount else 0 end) / count(wa.employeenumber) ::numeric as prc_31_35,
+    sum(case when wa.age between '26' and '35' then wa.employeecount else 0 end) / count(wa.employeenumber) ::numeric as prc_26_35
 from "WA_Fn-UseC_-HR-Employee-Attrition" wa
 where wa.attrition like 'Yes';
 
