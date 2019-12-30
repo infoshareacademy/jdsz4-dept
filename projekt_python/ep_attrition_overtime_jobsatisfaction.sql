@@ -4,14 +4,18 @@
 select count(employeenumber) as total
 from "WA_Fn-UseC_-HR-Employee-Attrition";
 
---Kategorie Overtime i liczba rekordów:
+--Kategorie Overtime, liczba rekordów i procent:
 select distinct wa.overtime,
-    sum(wa.employeecount) over (partition by wa.overtime) as total
+    sum(wa.employeecount) over () as total,
+    sum(wa.employeecount) over (partition by wa.overtime) as am_over,
+    sum(wa.employeecount) over (partition by wa.overtime) / sum(wa.employeecount) over () ::numeric as prc_over
 from "WA_Fn-UseC_-HR-Employee-Attrition" wa;
 
---Kategorie Jobsatifaction i liczba rekordów:
+--Kategorie Jobsatifaction, liczba rekordów i procent:
 select distinct wa.jobsatisfaction,
-    sum(wa.employeecount) over (partition by wa.jobsatisfaction) as total
+    sum(wa.employeecount) over () as total,
+    sum(wa.employeecount) over (partition by wa.jobsatisfaction) as am_job,
+    sum(wa.employeecount) over (partition by wa.jobsatisfaction) / sum(wa.employeecount) over () ::numeric as prc_job
 from "WA_Fn-UseC_-HR-Employee-Attrition" wa;
 
 select distinct wa.attrition,
@@ -30,6 +34,14 @@ select distinct wa.attrition,
 from "WA_Fn-UseC_-HR-Employee-Attrition" wa
 
 ---Procentowy rozkład ze względu na Attrition i Overtime i Jobsatisfaction:
+
+select distinct wa.attrition,
+    wa.overtime,
+    wa.jobsatisfaction,
+    sum(wa.employeecount) over () as total,
+    sum(wa.employeecount) over (partition by wa.attrition, wa.overtime, wa.jobsatisfaction) as att_overt,
+    sum(wa.employeecount) over (partition by wa.attrition, wa.overtime, wa.jobsatisfaction) / sum(wa.employeecount) over () ::numeric as prc_at_ov_js
+from "WA_Fn-UseC_-HR-Employee-Attrition" wa
 
 --1 'Low'
 select distinct wa.attrition,
