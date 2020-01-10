@@ -32,46 +32,6 @@ select distinct wa.jobsatisfaction,
     sum(wa.employeecount) over (partition by wa.jobsatisfaction) / sum(wa.employeecount) over () ::numeric as prc_job
 from "WA_Fn-UseC_-HR-Employee-Attrition" wa;
 
---Procentowy rozkład ze względu na Attrition i Department:
-select distinct wa.attrition,
-    wa.department,
-    sum(wa.employeecount) over () as total,
-    sum(wa.employeecount) over (partition by wa.attrition) as am_att,
-    sum(wa.employeecount) over (partition by wa.department) as am_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) as att_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) / sum(wa.employeecount) over () ::numeric as prc_att_dep
-from "WA_Fn-UseC_-HR-Employee-Attrition" wa;
-
-select distinct wa.attrition,
-    wa.department,
-    sum(wa.employeecount) over () as total,
-    sum(wa.employeecount) over (partition by wa.attrition) as am_att,
-    sum(wa.employeecount) over (partition by wa.department) as am_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) as att_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) / sum(wa.employeecount) over () ::numeric as prc_att_dep
-from "WA_Fn-UseC_-HR-Employee-Attrition" wa
-where wa.department like 'Res%';
-
-select distinct wa.attrition,
-    wa.department,
-    sum(wa.employeecount) over () as total,
-    sum(wa.employeecount) over (partition by wa.attrition) as am_att,
-    sum(wa.employeecount) over (partition by wa.department) as am_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) as att_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) / sum(wa.employeecount) over () ::numeric as prc_att_dep
-from "WA_Fn-UseC_-HR-Employee-Attrition" wa
-where wa.department like 'Sa%';
-
-select distinct wa.attrition,
-    wa.department,
-    sum(wa.employeecount) over () as total,
-    sum(wa.employeecount) over (partition by wa.attrition) as am_att,
-    sum(wa.employeecount) over (partition by wa.department) as am_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) as att_dep,
-    sum(wa.employeecount) over (partition by wa.attrition, wa.department) / sum(wa.employeecount) over () ::numeric as prc_att_dep
-from "WA_Fn-UseC_-HR-Employee-Attrition" wa
-where wa.department like 'Hu%';
-
 ---Procentowy rozkład ze względu na JobRole i Jobsatisfaction:
 
 select distinct wa.jobrole,
