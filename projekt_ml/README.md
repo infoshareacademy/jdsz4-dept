@@ -1,4 +1,4 @@
-# Projekt Python
+# Projekt Machine Learning
 1.Jak kosztowne jest zdrowie ?
 
 ## Baza:
