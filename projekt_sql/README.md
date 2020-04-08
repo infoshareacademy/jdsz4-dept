@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# jdsz4-dept
+=======
 # Opis projektu:
 
 #### Data related to the 2016 US Election
@@ -13,3 +16,4 @@ Baze danych można znaleźć [tutaj](https://www.kaggle.com/benhamner/2016-us-el
 * Tomek
 
 
+>>>>>>> master
